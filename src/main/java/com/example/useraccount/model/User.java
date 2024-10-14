@@ -1,4 +1,5 @@
-package com.example.useraccount.model;
+package com.example.userAccount.model;
+
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Size;
@@ -14,10 +15,9 @@ import lombok.Setter;
 @Entity
 @Table(name = "users")
 public class User {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Long id;
 
     @Column(name = "username", unique = true, length = 30)
     @Size(min = 2, message = "Минимальная длина должна составлять 2 символа")
@@ -32,17 +32,14 @@ public class User {
 
     @Column(name = "email", length = 30)
     @Size(min = 2, message = "Минимальная длина должна составлять 2 символа")
-    @Size(max = 30, message = "Максимальная длина должна составлять 30 символов")
     private String email;
 
     @Column(name = "name", length = 30)
     @Size(min = 2, message = "Минимальная длина должна составлять 2 символа")
-    @Size(max = 30, message = "Максимальная длина должна составлять 30 символов")
     private String name;
 
     @Column(name = "surname", length = 30)
     @Size(min = 2, message = "Минимальная длина должна составлять 2 символа")
-    @Size(max = 30, message = "Максимальная длина должна составлять 30 символов")
     private String surname;
 
     @Column(name = "role", length = 10)

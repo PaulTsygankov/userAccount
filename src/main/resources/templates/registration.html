@@ -1,10 +1,46 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Регистрация</title>
+    <style>
+        .error{
+        color:red;
+        }
+    </style>
 </head>
 <body>
+<h2>Регистрация</h2>
+<form th:action="@{/registration}" th:object="${user}" method="post">
 
+    <label for="username">Имя пользователя</label>
+    <input type="text" th:field="*{username}" id="username" autocomplete="false" placeholder="Имя пользователя"><br>
+    <p th:if="${#fields.hasErrors('username')}" th:errors="*{username}" th:errorclass="error"></p>
+
+    <label for="email">Email</label>
+    <input type="text" th:field="*{email}" id="email" autocomplete="false" placeholder="Email"><br>
+    <p th:if="${#fields.hasErrors('email')}" th:errors="*{email}" th:errorclass="error"></p>
+
+    <label for="name">Имя</label>
+    <input type="text" th:field="*{name}" id="name" autocomplete="false" placeholder="Name"><br>
+    <p th:if="${#fields.hasErrors('name')}" th:errors="*{name}" th:errorclass="error"></p>
+
+    <label for="surname">Фамилия</label>
+    <input type="text" th:field="*{surname}" id="surname" autocomplete="false" placeholder="Surname"><br>
+    <p th:if="${#fields.hasErrors('surname')}" th:errors="*{surname}" th:errorclass="error"></p>
+
+    <label for="password">Пароль</label>
+    <input type="password" th:field="*{password}" id="password" autocomplete="false" placeholder="Password"><br>
+    <p th:if="${#fields.hasErrors('password')}" th:errors="*{password}" th:errorclass="error"></p>
+
+    <label for="passwordConfirm">Пароль</label>
+    <input type="password" th:field="*{passwordConfirm}" id="passwordConfirm" autocomplete="false" placeholder="Password"><br>
+    <p th:if="${#fields.hasErrors('passwordConfirm')}" th:errors="*{passwordConfirm}" th:errorclass="error"></p>
+
+    <div th:if="${#fields.hasGlobalErrors()}">
+        <p th:each="err : ${#fields.globalErrors()}" th:text="${err}" class="error"></p>
+    </div>
+    <input type="submit" value="Зарегистрироваться">
+</form>
 </body>
 </html>
